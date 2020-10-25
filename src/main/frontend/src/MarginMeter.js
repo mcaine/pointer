@@ -4,7 +4,7 @@ class MarginMeter extends Component {
 
     constructor() {
         super();
-        this.state = { "margin" : -11};
+        this.state = { "margin" : -5};
     }
 
     componentDidMount() {
@@ -111,7 +111,7 @@ class MarginMeter extends Component {
                                     })
                         })}
 
-                        <circle x={0} y={0} r={100} stroke={"lightgray"} stroke-width={3} fill={"white"} clip-path="url(#margin-cut-off)"/>
+                        <circle x={0} y={0} r={100} stroke={"lightgray"} stroke-width={3} fill={"white"} clipPath="url(#margin-cut-off)"/>
 
                         <line x1="-400" y1="0" x2="400" y2="0" stroke="lightgray" stroke-width={3}/>
 
