@@ -14,8 +14,8 @@ public class PointerController {
     private MeterData meterData = new MeterData(50, 0, 270, true);
 
     @GetMapping("/status")
-    public MeterData status() {
-        return meterData;
+    public String status() {
+        return meterData.toString();
     }
 
     @PostMapping("/update")
