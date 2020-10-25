@@ -7,7 +7,7 @@ But I'm not a ~~rapper~~ frontend developer.
 `./mvnw clean package`
 
 ## Run with
-`java -jar target/pointer-0.0.1-SNAPSHOT.jar` (uses Java >8)
+`java -jar target/pointer-0.0.1-SNAPSHOT.jar` (uses Java 8 or later)
 
 ## View meters
 On http://localhost:8080
