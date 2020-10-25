@@ -4,12 +4,10 @@ class ElectoralVotesMeter extends Component {
 
     constructor() {
         super();
-        this.state = { "votes" : 200 };
+        this.state = { "votes" : 100 };
     }
 
-    componentDidMount() {
-
-    }
+    componentDidMount() { }
 
     render() {
         function angleForVotes(votes) {
@@ -138,11 +136,11 @@ class ElectoralVotesMeter extends Component {
                             let posnAngle = angleForVotes(val);
                             let centreVal = 270;
                             let printedVal = val < centreVal ? 2 * centreVal - val : val;
-                            let textRotate = 0;
+                            let textRotate = val >= centreVal ? 180 : 0;
                             return <g transform={"rotate(" + posnAngle +")"}>
                                 <line x1="-320" y1="0" x2="-310" y2="0" stroke="lightgray" stroke-width={3}/>
-                                <g transform={"rotate(" + textRotate +")"}>
-                                <text x="-310" y="5">{printedVal}</text>
+                                <g transform={"translate(-290,0)"}>
+                                    <g transform={"rotate(" + textRotate +")"}><text fill="gray" x={-13} y={5}>{printedVal}</text></g>
                                 </g>
                             </g>
                         })};
