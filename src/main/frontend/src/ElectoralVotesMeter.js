@@ -4,7 +4,7 @@ class ElectoralVotesMeter extends Component {
 
     constructor() {
         super();
-        this.state = { "votes" : 542 };
+        this.state = { "votes" : 271 };
     }
 
     componentDidMount() {
@@ -12,6 +12,10 @@ class ElectoralVotesMeter extends Component {
     }
 
     render() {
+        function angleForVotes(votes) {
+            return 90 + (votes - 271) / (271/85);
+        }
+
         return (
             <div>
                 <svg width={820} height={380}>
@@ -24,9 +28,9 @@ class ElectoralVotesMeter extends Component {
                         <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clipPath="url(#ev-cut-off)" />
 
                         {
-                            [ this.state.votes ].map(margin => {
+                            [ this.state.votes ].map(votes => {
 
-                                let angle = 90;
+                                let angle = angleForVotes(votes);
                                 let width = 10;
 
                                 var divisions = [angle - 2 * width, angle - width, angle, angle + width, angle + 2 * width];
@@ -123,12 +127,10 @@ class ElectoralVotesMeter extends Component {
 
                         {
                             [ this.state.votes ].map(votes => {
-
                                 let l1 = 330;
                                 let l2 = 10;
 
-                                //let angle = 90 + 90 * margin / 12;
-                                let angle = 90 + (votes - 271) / (271/85);
+                                let angle = angleForVotes(votes);
                                 let v1 = angle - 90;
                                 let v2 = angle + 90;
 
