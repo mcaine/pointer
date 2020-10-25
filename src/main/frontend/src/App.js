@@ -44,13 +44,7 @@ class App extends Component {
         .get(`/status`)
         .then(res => {
           if (res.status === 200) {
-            console.log('Received status response!! ' + res);
-            let newData = res.data;
-            console.log('New Chance = ' + newData.chance);
-            console.log('New Margin = ' + newData.margin);
-            console.log('New votes = ' + newData.votes);
-            console.log('New isForecast = ' + newData.isForecast);
-            this.setState({ chance: newData.chance, margin:newData.margin, votes: newData.votes, isForecast: newData.isForecast});
+            this.setState(res.data);
           } else {
             console.log("status request got response status " + res.status);
           }
@@ -76,7 +70,7 @@ class App extends Component {
 
     let displayMargin = Math.abs(this.state.margin);
     let displayMarginName = "Trumo";
-    if (this.state.margin <= 50) {
+    if (this.state.margin <= 0) {
       displayMarginName = "Biden";
     }
 
@@ -96,7 +90,7 @@ class App extends Component {
               <tr>
                 <td>
                   <div>Chance of Winning Presidency</div>
-                  <div>{displayChance}% {displayChanceName}</div>
+                  <div className="stats">{displayChance}% {displayChanceName}</div>
                   <div>{forecastText}</div>
                 </td>
                 <td>
@@ -106,7 +100,7 @@ class App extends Component {
               <tr>
                 <td>
                   <div>Popular Vote Margin</div>
-                  <div>{displayMarginName} +{displayMargin}%</div>
+                  <div className="stats">{displayMarginName} +{displayMargin}%</div>
                   <div>{forecastText}</div>
                 </td>
                 <td>
@@ -116,7 +110,7 @@ class App extends Component {
               <tr>
                 <td>
                   <div>Electoral Votes</div>
-                  <div>{displayVotesText} {displayVotesName}</div>
+                  <div className="stats">{displayVotesText} {displayVotesName}</div>
                   <div>{forecastText}</div>
                 </td>
                 <td>

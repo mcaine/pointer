@@ -15,13 +15,15 @@ On http://localhost:8080
 ## Update meters
 Confuse and infuriate any friends you may have by POSTing new values to the /update endpoint:
 
-`curl -X POST "localhost:8080/update?chance=10&margin=-11&votes=-240"`
+`curl -X POST "localhost:8080/update?chance=10&margin=-11&votes=-240&isForecast=false"`
 
 `chance` param is from 0 to 100 and is the chance of trumo winning. 0 is a Biden certainty, 100 is a certain win for trumo. 
 
 `margin` param is from -12 (12 pt swing to D) to +12 (12 pt swing to R)
 
 `votes` is from 270 to 540 (if you mean Trumop) or in the range -540 to -270 (if you mean Biden)
+
+`isForecast` is true or false, not required and will default to true if not present
 
 Connected meters will be updated via the magic of websockets.
 
