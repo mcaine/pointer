@@ -35,7 +35,7 @@ class ElectoralVotesMeter extends Component {
                         <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clipPath="url(#ev-cut-off)" />
 
                         {
-                            [ this.state.votes ].map(votes => {
+                            [ this.props.votes ].map(votes => {
 
                                 let angle = angleForVotes(votes);
                                 let width = 10;
@@ -155,7 +155,7 @@ class ElectoralVotesMeter extends Component {
                         })};
 
                         {
-                            [ this.state.votes ].map(votes => {
+                            [ this.props.votes ].map(votes => {
                                 let l1 = 330;
                                 let l2 = 10;
 

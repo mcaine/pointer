@@ -4,7 +4,7 @@ class MarginMeter extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { "margin" : props.margin};
+        this.state = { "margin" : this.props.margin};
     }
 
     componentDidMount() {
@@ -37,8 +37,12 @@ class MarginMeter extends Component {
                         <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clipPath="url(#margin-cut-off)" />
 
                         {
-                            [ this.state.margin ].map(margin => {
-                                let angle = 90 + 90 * margin / 12;
+                            [ this.props.margin ].map(margin => {
+
+                                console.log("Rendering margin meter with margin " + margin);
+
+                                //let angle = 90 + 90 * margin / 12;
+                                let angle = angleForMargin(margin);
                                 let width = 10;
 
                                 var divisions = [angle - 2 * width, angle - width, angle, angle + width, angle + 2 * width];
@@ -159,12 +163,12 @@ class MarginMeter extends Component {
                         })};
 
                         {
-                            [ this.state.margin ].map(margin => {
+                            [ this.props.margin ].map(margin => {
 
                                 let l1 = 330;
                                 let l2 = 10;
 
-                                let angle = 90 + 90 * margin / 12;
+                                let angle = angleForMargin(margin);
                                 let v1 = angle - 90;
                                 let v2 = angle + 90;
 

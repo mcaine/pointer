@@ -14,9 +14,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      "chance" : props.chance,
-      "margin" : props.margin,
-      "votes" : props.votes
+      "chance" : 50,
+      "margin" : 0,
+      "votes" : 270
     };
   }
 
@@ -32,7 +32,7 @@ class App extends Component {
       console.log('New Chance = ' + newData.chance);
       console.log('New Margin = ' + newData.margin);
       console.log('New votes = ' + newData.votes);
-      this.setState(newData);
+      this.setState({ chance: newData.chance, margin:newData.margin, votes: newData.votes});
     };
   }
 

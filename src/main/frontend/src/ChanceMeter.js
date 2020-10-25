@@ -73,7 +73,7 @@ class ChanceMeter extends Component {
                         </g>
 
                         {
-                            [ this.state.chance ].map(chance => {
+                            [ this.props.chance ].map(chance => {
 
                                 let l1 = 330;
                                 let l2 = 10;
