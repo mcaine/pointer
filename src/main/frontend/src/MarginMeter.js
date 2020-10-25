@@ -4,7 +4,7 @@ class MarginMeter extends Component {
 
     constructor() {
         super();
-        this.state = { "margin" : -0.5};
+        this.state = { "margin" : -11};
     }
 
     componentDidMount() {
