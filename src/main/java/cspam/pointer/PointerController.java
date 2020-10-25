@@ -12,8 +12,8 @@ public class PointerController {
     private final PointerWebSocketHandler webSocketHandler;
 
     @PostMapping("/update")
-    public void update(@RequestParam int value) throws Exception {
-        webSocketHandler.sendUpdate(value);
+    public void update(@RequestParam float chance, @RequestParam float margin, @RequestParam float votes) throws Exception {
+        webSocketHandler.sendUpdate(chance, margin, votes);
     }
 
 }

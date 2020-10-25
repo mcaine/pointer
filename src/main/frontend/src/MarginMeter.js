@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class MarginMeter extends Component {
 
-    constructor() {
-        super();
-        this.state = { "margin" : 0};
+    constructor(props) {
+        super(props);
+        this.state = { "margin" : props.margin};
     }
 
     componentDidMount() {

@@ -11,13 +11,12 @@ const client = new W3CWebSocket('ws://localhost:8080/pointer-web-socket');
 
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      "candidates" : [ "Biden", "Trump"],
-      "chance" : 58,
-      "margin" : 2.9,
-      "votes" : 271
+      "chance" : props.chance,
+      "margin" : props.margin,
+      "votes" : props.votes
     };
   }
 
@@ -29,9 +28,11 @@ class App extends Component {
 
     client.onmessage = (message) => {
       console.log('Got message!! ' + message.data);
-      let newPosition = JSON.parse(message.data);
-      console.log('New position = ' + newPosition)
-      this.setState({"position" : newPosition})
+      let newData = JSON.parse(message.data);
+      console.log('New Chance = ' + newData.chance);
+      console.log('New Margin = ' + newData.margin);
+      console.log('New votes = ' + newData.votes);
+      this.setState(newData);
     };
   }
 

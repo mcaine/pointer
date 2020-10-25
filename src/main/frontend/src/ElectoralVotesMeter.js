@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class ElectoralVotesMeter extends Component {
 
-    constructor() {
-        super();
-        this.state = { "votes" : 100 };
+    constructor(props) {
+        super(props);
+        this.state = { "votes" : props.votes };
     }
 
     componentDidMount() { }

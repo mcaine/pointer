@@ -34,13 +34,14 @@ public class PointerWebSocketHandler extends TextWebSocketHandler {
         super.afterConnectionClosed(session, status);
     }
 
-    public void sendUpdate(int value) throws Exception {
-        log.info("Sending new value " + value);
+    public void sendUpdate(float chance, float margin, float votes) throws Exception {
+        log.info("Sending new values chance=" + chance + ", margin=" + margin + ", votes=" + votes);
         log.info("There are " + sessions.size() + " sessions");
         sessions.forEach(webSocketSession -> {
             try {
                 log.info("Sending message to a websocket");
-                webSocketSession.sendMessage(new TextMessage(String.valueOf(value)));
+                String text = new MeterData(chance, margin, votes).toString();
+                webSocketSession.sendMessage(new TextMessage(text));
             } catch (IOException ioex) {
                 log.error(ioex.getMessage());
             }

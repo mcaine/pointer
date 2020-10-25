@@ -3,9 +3,9 @@ import './Meter.css';
 
 class ChanceMeter extends Component {
 
-    constructor() {
-        super();
-        this.state = { "chance" : 40};
+    constructor(props) {
+        super(props);
+        this.state = { "chance" : props.chance};
     }
 
     componentDidMount() { }
