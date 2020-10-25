@@ -11,6 +11,20 @@ class MarginMeter extends Component {
     }
 
     render() {
+
+        function range(start, stop, step) {
+            var result = [start], it = start;
+            while (it < stop) {
+                result.push(it += step);
+            }
+            return result;
+        }
+
+        function angleForMargin(margin) {
+            let centreVal = 0;
+            return 90 + 90 * (margin - centreVal) / 12;
+        }
+
         return (
             <div>
                 <svg width={820} height={380}>
@@ -118,6 +132,31 @@ class MarginMeter extends Component {
                         <g transform={"rotate(90)"}>
                             <line x1={-320} y1={0} x2={-100} y2={0} stroke="gray" stroke-width={3} />
                         </g>
+
+                        {range(-11, 11, 1).map(val => {
+                            let posnAngle = angleForMargin(val);
+                            let centreVal = 0;
+                            let printedVal = (val < 0) ? "D+"+(-1*val) : "R+"+ val;
+                            if (val == 0) {
+                                printedVal = "";
+                            }
+                            let textRotate = val >= centreVal ? 180 : 0;
+                            return <g transform={"rotate(" + posnAngle +")"}>
+                                <line x1="-320" y1="0" x2="-310" y2="0" stroke="lightgray" stroke-width={3}/>
+                                <g transform={"translate(-290,0)"}>
+                                    <g transform={"rotate(" + textRotate +")"}><text fill="gray" x={-15} y={5}>{printedVal}</text></g>
+                                </g>
+                            </g>
+                        })};
+
+                        {range(-10.5, 10.5, 1).map(val => {
+                            let posnAngle = angleForMargin(val);
+                            let centreVal = 0;
+                            let printedVal = val < centreVal ? 2 * centreVal - val : val;
+                            return <g transform={"rotate(" + posnAngle +")"}>
+                                <line x1="-320" y1="0" x2="-315" y2="0" stroke="lightgray" stroke-width={3}/>
+                            </g>
+                        })};
 
                         {
                             [ this.state.margin ].map(margin => {
