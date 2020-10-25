@@ -11,8 +11,8 @@ import ChanceMeter from "./ChanceMeter";
 import MarginMeter from "./MarginMeter";
 import ElectoralVotesMeter from "./ElectoralVotesMeter";
 
-//const client = new W3CWebSocket('ws://localhost:8080/pointer-web-socket');
-const client = new W3CWebSocket('wss://carparkcats.herokuapp.com/pointer-web-socket');
+const client = new W3CWebSocket('ws://localhost:8080/pointer-web-socket');
+//const client = new W3CWebSocket('wss://carparkcats.herokuapp.com/pointer-web-socket');
 
 class App extends Component {
 
