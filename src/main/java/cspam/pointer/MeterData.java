@@ -11,11 +11,10 @@ public class MeterData {
     @Getter @Setter public float chance;
     @Getter @Setter public float margin;
     @Getter @Setter public float votes;
+    @Getter @Setter public boolean forecast;
 
     @Override
     public String toString() {
-        String result = "{ \"chance\":" + chance + ", \"margin\":" + margin + ", \"votes\":" + votes + " }";
-        log.debug("String result is " + result);
-        return result;
+        return "{ \"chance\":" + chance + ", \"margin\":" + margin + ", \"votes\":" + votes + ", \"isForecast\":" + forecast + " }";
     }
 }

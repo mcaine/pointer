@@ -1,6 +1,7 @@
 package cspam.pointer;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class PointerController {
 
     private final PointerWebSocketHandler webSocketHandler;
+    private MeterData meterData = new MeterData(50, 0, 270, true);
+
+    @GetMapping("/status")
+    public MeterData status() {
+        return meterData;
+    }
 
     @PostMapping("/update")
-    public void update(@RequestParam float chance, @RequestParam float margin, @RequestParam float votes) throws Exception {
+    public synchronized void update(
+        @RequestParam float chance,
+        @RequestParam float margin,
+        @RequestParam float votes,
+        @RequestParam(required = false, defaultValue = "true") boolean isForecast) throws Exception {
 
         if (chance < 0 || chance > 100) {
             throw new RuntimeException("Chance out of range, should be in range 0 (Biden will win) to 100 (Trump will win). 50 is a tossup");
@@ -30,7 +41,8 @@ public class PointerController {
             votes = 540 + votes;
         }
         */
-        webSocketHandler.sendUpdate(chance, margin, votes);
+        meterData = new MeterData(chance, margin, votes, isForecast);
+        this.meterData = meterData;
+        webSocketHandler.sendUpdate(meterData);
     }
-
 }

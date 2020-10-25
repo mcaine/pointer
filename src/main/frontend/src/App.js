@@ -17,9 +17,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      "chance" : 50,
-      "margin" : 0,
-      "votes" : 270
+      "chance" : this.props.chance,
+      "margin" : this.props.margin,
+      "votes" : this.props.votes,
+      "isForecast" : this.props.isForecast
     };
   }
 
@@ -35,14 +36,18 @@ class App extends Component {
       console.log('New Chance = ' + newData.chance);
       console.log('New Margin = ' + newData.margin);
       console.log('New votes = ' + newData.votes);
-      this.setState({ chance: newData.chance, margin:newData.margin, votes: newData.votes});
+      console.log('New isForecast = ' + newData.isForecast);
+      this.setState({ chance: newData.chance, margin:newData.margin, votes: newData.votes, isForecast: newData.isForecast});
     };
   }
 
   render() {
     let displayChance = this.state.chance;
     let displayChanceName = "Trumo";
-    let forecastText = "FORECAST";
+    let forecastText = "";
+    if (this.state.isForecast) {
+      forecastText = "FORECAST";
+    }
 
     if (this.state.chance <= 50) {
       displayChance = 100 - displayChance;
@@ -58,7 +63,7 @@ class App extends Component {
     let displayVotes = this.state.votes > 0 ? this.state.votes : 540 + this.state.votes;
     let displayVotesText = displayVotes;
     let displayVotesName = "Trumo";
-    if (this.state.votes < 0 ) {
+    if (this.state.votes <= 0 ) {
       displayVotesName = "Biden";
       displayVotesText = 540 - displayVotes;
     }

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App chance={50} votes={-270} margin={0} isForecast={true}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
