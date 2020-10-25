@@ -5,7 +5,7 @@ class ChanceMeter extends Component {
 
     constructor() {
         super();
-        this.state = { "chance" : 3 };
+        this.state = { "chance" : 40};
     }
 
     componentDidMount() { }
