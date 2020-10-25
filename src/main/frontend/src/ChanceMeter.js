@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Meter.css';
 
 class ChanceMeter extends Component {
 
@@ -93,7 +94,16 @@ class ChanceMeter extends Component {
                             })
                         }
 
-                        <circle x={0} y={0} r={10} stroke={"white"}  stroke-width={1} fill={"lightgray"}/>
+                        <circle x={0} y={0} r={10} stroke={"white"}  stroke-width={1} fill={"gray"}/>
+
+                        <text x="-270" y="-17" className="pointer">VERY LIKELY</text>
+                        <text x="-250" y="-78" className="pointer">LIKELY</text>
+                        <text x="-200" y="-150" className="pointer">LEANING</text>
+                        <text x="-23" y="-200" className="pointer">TOSSUP</text>
+                        <text x="140" y="-150" className="pointer">LEANING</text>
+                        <text x="200" y="-78" className="pointer">LIKELY</text>
+                        <text x="210" y="-17" className="pointer">VERY LIKELY</text>
+
                     </g>
                 </svg>
             </div>
