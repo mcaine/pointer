@@ -4,7 +4,7 @@ class MarginMeter extends Component {
 
     constructor() {
         super();
-        this.state = { "margin" : 3};
+        this.state = { "margin" :-2};
     }
 
     componentDidMount() {
@@ -73,7 +73,7 @@ class MarginMeter extends Component {
 
                                 if (angle > 90 + width) {
                                     divisions = [angle - 2 * width, 90, angle - width, angle, angle + width,  angle + 2 * width];
-                                    colours = ["#eef", "#fcc", "#fcc", "#fcc", "#fee"];
+                                    colours = ["#eef", "#fee", "#fcc", "#fcc", "#fee"];
                                     positions = [
                                         [divisions[0], divisions[1], colours[0]],
                                         [divisions[1], divisions[2], colours[1]],
