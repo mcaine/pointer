@@ -14,12 +14,13 @@ class MarginMeter extends Component {
         return (
             <div>
                 <svg width={820} height={380}>
+
                     <g transform={"translate(410,360)"}>
-                        <clipPath id="chance-cut-off">
+                        <clipPath id="margin-cut-off">
                             <rect x="-500" y="-330" width="830" height="330"/>
                         </clipPath>
 
-                        <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clip-path="url(#chance-cut-off)" />
+                        <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clipPath="url(#margin-cut-off)" />
 
                         {
                             [ this.state.margin ].map(margin => {
@@ -106,11 +107,11 @@ class MarginMeter extends Component {
                                             let x2 = -radius * Math.cos(end/180 * Math.PI);
                                             let y2 = -radius * Math.sin(end/180 * Math.PI);
 
-                                            return <path d={"M 0 0 " + x1 + " " + y1 + "A " + radius + " " + radius + ", 0, 0, 1 " + x2 + " " + y2 + "Z"} fill={colour}></path>
+                                            return <path d={"M 0 0 " + x1 + " " + y1 + "A " + radius + " " + radius + ", 0, 0, 1 " + x2 + " " + y2 + "Z"} fill={colour} clipPath="url(#margin-cut-off)"></path>
                                     })
                         })}
 
-                        <circle x={0} y={0} r={100} stroke={"lightgray"} stroke-width={3} fill={"white"} clip-path="url(#chance-cut-off)"/>
+                        <circle x={0} y={0} r={100} stroke={"lightgray"} stroke-width={3} fill={"white"} clip-path="url(#margin-cut-off)"/>
 
                         <line x1="-400" y1="0" x2="400" y2="0" stroke="lightgray" stroke-width={3}/>
 
