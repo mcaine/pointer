@@ -4,7 +4,8 @@ import './App.css';
 import React, { Component } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import axios from 'axios';
-import { Table, Container } from "react-bootstrap"
+import { Table, Container } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.css';
 
 import ChanceMeter from "./ChanceMeter";
 import MarginMeter from "./MarginMeter";
