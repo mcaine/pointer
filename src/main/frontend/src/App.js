@@ -3,7 +3,7 @@ import './App.css';
 
 import React, { Component } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-
+import axios from 'axios';
 import { Table, Container } from "react-bootstrap"
 
 import ChanceMeter from "./ChanceMeter";
@@ -39,6 +39,26 @@ class App extends Component {
       console.log('New isForecast = ' + newData.isForecast);
       this.setState({ chance: newData.chance, margin:newData.margin, votes: newData.votes, isForecast: newData.isForecast});
     };
+
+    axios
+        .get(`/status`)
+        .then(res => {
+          if (res.status === 200) {
+            console.log('Received status response!! ' + res);
+            let newData = res.data;
+            console.log('New Chance = ' + newData.chance);
+            console.log('New Margin = ' + newData.margin);
+            console.log('New votes = ' + newData.votes);
+            console.log('New isForecast = ' + newData.isForecast);
+            this.setState({ chance: newData.chance, margin:newData.margin, votes: newData.votes, isForecast: newData.isForecast});
+          } else {
+            console.log("status request got response status " + res.status);
+          }
+        })
+        .catch(function(error) {
+          console.log(error)
+        });
+
   }
 
   render() {

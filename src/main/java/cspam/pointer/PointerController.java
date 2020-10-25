@@ -14,7 +14,7 @@ public class PointerController {
     private MeterData meterData = new MeterData(50, 0, 270, true);
 
     @GetMapping("/status")
-    public String status() {
+    public synchronized String status() {
         return meterData.toString();
     }
 
@@ -36,13 +36,8 @@ public class PointerController {
         if ((votes < 0 && votes > -270) || (votes >=0 && votes < 270)) {
             throw new RuntimeException("Votes should be in the range -540 to -270 (for Biden), 270 to 540 (for Trump)");
         }
-        /*
-        if (votes < 0) {
-            votes = 540 + votes;
-        }
-        */
+
         meterData = new MeterData(chance, margin, votes, isForecast);
-        this.meterData = meterData;
         webSocketHandler.sendUpdate(meterData);
     }
 }
