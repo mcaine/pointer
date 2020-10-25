@@ -40,4 +40,13 @@ public class PointerController {
         meterData = new MeterData(chance, margin, votes, isForecast);
         webSocketHandler.sendUpdate(meterData);
     }
+
+    @GetMapping("/update")
+    public synchronized void updateViaGet(
+        @RequestParam float chance,
+        @RequestParam float margin,
+        @RequestParam float votes,
+        @RequestParam(required = false, defaultValue = "true") boolean isForecast) throws Exception {
+            update(chance, margin, votes, isForecast);
+    }
 }
