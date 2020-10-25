@@ -15,7 +15,7 @@ public class MeterData {
     @Override
     public String toString() {
         String result = "{ \"chance\":" + chance + ", \"margin\":" + margin + ", \"votes\":" + votes + " }";
-        log.info("String result is " + result);
+        log.debug("String result is " + result);
         return result;
     }
 }

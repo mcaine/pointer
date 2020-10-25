@@ -20,7 +20,7 @@ public class PointerWebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        log.info("afterConnectionEstablished");
+        log.debug("afterConnectionEstablished");
         sessions.add(session);
         log.info("There are " + sessions.size() + " sessions");
         super.afterConnectionEstablished(session);
@@ -28,14 +28,14 @@ public class PointerWebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        log.info("afterConnectionClosed");
+        log.debug("afterConnectionClosed");
         sessions.remove(session);
         log.info("There are " + sessions.size() + " sessions");
         super.afterConnectionClosed(session, status);
     }
 
     public void sendUpdate(float chance, float margin, float votes) throws Exception {
-        log.info("Sending new values chance=" + chance + ", margin=" + margin + ", votes=" + votes);
+        log.debug("Sending new values chance=" + chance + ", margin=" + margin + ", votes=" + votes);
         log.info("There are " + sessions.size() + " sessions");
         sessions.forEach(webSocketSession -> {
             try {
