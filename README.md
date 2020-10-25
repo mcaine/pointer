@@ -15,6 +15,10 @@ On http://localhost:8080
 ## Update meters
 `curl -X POST "localhost:8080/update?chance=10&margin=-11&votes=-240"`
 
+`chance` param is from 0 to 100
+`margin` param is from -12 to +12
+`votes` is from 270 to 540 (if you mean Trumop) or in the range -540 to -270 (if you mean Biden)
+
 Connected meters will be updated via the magic of websockets.
 
 
