@@ -15,7 +15,7 @@ On http://localhost:8080
 ## Update meters
 Confuse and infuriate any friends you may have by POSTing new values to the /update endpoint:
 
-`curl -X POST "localhost:8080/update?chance=10&margin=-11&votes=-240&isForecast=false"`
+`curl -X POST "localhost:8080/update?chance=10&margin=-11&votes=-290&isForecast=false"`
 
 `chance` param is from 0 to 100 and is the chance of trumo winning. 0 is a Biden certainty, 100 is a certain win for trumo. 
 
