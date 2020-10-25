@@ -39,7 +39,7 @@ public class PointerController {
         }
 
         // This is not meant to actually be secure you know
-        if ((votes == 420 || votes == -420 ) && (Math.abs(chance - 69) < 0.00001 || Math.abs(chance + 69) < 0.00001) && !secret.equals("31337")) {
+        if ((votes == 420 || votes == -420 ) && (Math.abs(chance - 69) < 0.00001 || Math.abs(chance - 31 ) < 0.00001) && !secret.equals("31337")) {
             throw new VeryFunnyException("Disabled due to abuse");
         }
 
