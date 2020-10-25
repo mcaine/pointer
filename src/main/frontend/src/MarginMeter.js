@@ -141,7 +141,7 @@ class MarginMeter extends Component {
                             let posnAngle = angleForMargin(val);
                             let centreVal = 0;
                             let printedVal = (val < 0) ? "D+"+(-1*val) : "R+"+ val;
-                            if (val == 0) {
+                            if (val === 0) {
                                 printedVal = "";
                             }
                             let textRotate = val >= centreVal ? 180 : 0;
@@ -155,8 +155,8 @@ class MarginMeter extends Component {
 
                         {range(-10.5, 10.5, 1).map(val => {
                             let posnAngle = angleForMargin(val);
-                            let centreVal = 0;
-                            let printedVal = val < centreVal ? 2 * centreVal - val : val;
+                            //let centreVal = 0;
+                            //let printedVal = val < centreVal ? 2 * centreVal - val : val;
                             return <g transform={"rotate(" + posnAngle +")"}>
                                 <line x1="-320" y1="0" x2="-315" y2="0" stroke="lightgray" stroke-width={3}/>
                             </g>

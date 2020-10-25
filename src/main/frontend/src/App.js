@@ -3,6 +3,9 @@ import './App.css';
 
 import React, { Component } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+
+import { Table, Container } from "react-bootstrap"
+
 import ChanceMeter from "./ChanceMeter";
 import MarginMeter from "./MarginMeter";
 import ElectoralVotesMeter from "./ElectoralVotesMeter";
@@ -37,11 +40,67 @@ class App extends Component {
   }
 
   render() {
+    let displayChance = this.state.chance;
+    let displayChanceName = "Trumo";
+    let forecastText = "FORECAST";
+
+    if (this.state.chance <= 50) {
+      displayChance = 100 - displayChance;
+      displayChanceName = "Biden";
+    }
+
+    let displayMargin = Math.abs(this.state.margin);
+    let displayMarginName = "Trumo";
+    if (this.state.margin <= 50) {
+      displayMarginName = "Biden";
+    }
+
+    let displayVotes = this.state.votes > 0 ? this.state.votes : 540 + this.state.votes;
+    let displayVotesText = displayVotes;
+    let displayVotesName = "Trumo";
+    if (this.state.votes < 0 ) {
+      displayVotesName = "Biden";
+      displayVotesText = 540 - displayVotes;
+    }
+
     return (
         <div>
-          <ChanceMeter chance={this.state.chance}/>
-          <MarginMeter margin={this.state.margin}/>
-          <ElectoralVotesMeter votes={this.state.votes}/>
+          <Container>
+            <Table>
+              <tbody>
+              <tr>
+                <td>
+                  <div>Chance of Winning Presidency</div>
+                  <div>{displayChance}% {displayChanceName}</div>
+                  <div>{forecastText}</div>
+                </td>
+                <td>
+                  <ChanceMeter chance={this.state.chance}/>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>Popular Vote Margin</div>
+                  <div>{displayMarginName} +{displayMargin}%</div>
+                  <div>{forecastText}</div>
+                </td>
+                <td>
+                  <MarginMeter margin={this.state.margin}/>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>Electoral Votes</div>
+                  <div>{displayVotesText} {displayVotesName}</div>
+                  <div>{forecastText}</div>
+                </td>
+                <td>
+                  <ElectoralVotesMeter votes={displayVotes}/>
+                </td>
+              </tr>
+              </tbody>
+            </Table>
+          </Container>
         </div>
     );
   }

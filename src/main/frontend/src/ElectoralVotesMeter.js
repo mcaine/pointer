@@ -147,8 +147,8 @@ class ElectoralVotesMeter extends Component {
 
                         {range(10, 510, 20).map(val => {
                             let posnAngle = angleForVotes(val);
-                            let centreVal = 270;
-                            let printedVal = val < centreVal ? 2 * centreVal - val : val;
+                            //let centreVal = 270;
+                            //let printedVal = val < centreVal ? 2 * centreVal - val : val;
                             return <g transform={"rotate(" + posnAngle +")"}>
                                 <line x1="-320" y1="0" x2="-315" y2="0" stroke="lightgray" stroke-width={3}/>
                             </g>
