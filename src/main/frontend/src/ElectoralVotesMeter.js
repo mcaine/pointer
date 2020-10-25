@@ -4,7 +4,7 @@ class ElectoralVotesMeter extends Component {
 
     constructor() {
         super();
-        this.state = { "votes" : 271 };
+        this.state = { "votes" : 200 };
     }
 
     componentDidMount() {
@@ -13,7 +13,16 @@ class ElectoralVotesMeter extends Component {
 
     render() {
         function angleForVotes(votes) {
-            return 90 + (votes - 271) / (271/85);
+            let centreVal = 270;
+            return 90 + (votes - centreVal) / (centreVal/90);
+        }
+
+        function range(start, stop, step) {
+            var result = [start], it = start;
+            while (it < stop) {
+                result.push(it += step);
+            }
+            return result;
         }
 
         return (
@@ -125,6 +134,28 @@ class ElectoralVotesMeter extends Component {
                             <line x1={-320} y1={0} x2={-100} y2={0} stroke="gray" stroke-width={3} />
                         </g>
 
+                        {range(20, 520, 20).map(val => {
+                            let posnAngle = angleForVotes(val);
+                            let centreVal = 270;
+                            let printedVal = val < centreVal ? 2 * centreVal - val : val;
+                            let textRotate = 0;
+                            return <g transform={"rotate(" + posnAngle +")"}>
+                                <line x1="-320" y1="0" x2="-310" y2="0" stroke="lightgray" stroke-width={3}/>
+                                <g transform={"rotate(" + textRotate +")"}>
+                                <text x="-310" y="5">{printedVal}</text>
+                                </g>
+                            </g>
+                        })};
+
+                        {range(10, 510, 20).map(val => {
+                            let posnAngle = angleForVotes(val);
+                            let centreVal = 270;
+                            let printedVal = val < centreVal ? 2 * centreVal - val : val;
+                            return <g transform={"rotate(" + posnAngle +")"}>
+                                <line x1="-320" y1="0" x2="-315" y2="0" stroke="lightgray" stroke-width={3}/>
+                            </g>
+                        })};
+
                         {
                             [ this.state.votes ].map(votes => {
                                 let l1 = 330;
@@ -151,6 +182,8 @@ class ElectoralVotesMeter extends Component {
 
                     </g>
                 </svg>
+
+
             </div>
         );
     }
