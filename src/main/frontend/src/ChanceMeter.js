@@ -18,6 +18,7 @@ class ChanceMeter extends Component {
                         <clipPath id="chance-cut-off">
                             <rect x="-500" y="-330" width="830" height="330"/>
                         </clipPath>
+
                         <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clip-path="url(#chance-cut-off)" />
                         {
                             [
