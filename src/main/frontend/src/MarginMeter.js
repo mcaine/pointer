@@ -4,11 +4,10 @@ class MarginMeter extends Component {
 
     constructor() {
         super();
-        this.state = { "margin" : -1};
+        this.state = { "margin" : 3};
     }
 
     componentDidMount() {
-
     }
 
     render() {
@@ -24,14 +23,79 @@ class MarginMeter extends Component {
 
                         {
                             [ this.state.margin ].map(margin => {
-                                var angle = 90 + 90 * margin / 12;
+                                let angle = 90 + 90 * margin / 12;
+                                let width = 10;
 
-                                return [
-                                            [angle-20, angle-10, "#ccf"],
-                                            [angle-10, angle, "#ddf"],
-                                            [angle, angle+10, "#eef"],
-                                            [angle+10, angle+20, "#fff"]
-                                        ].map(a => {
+                                var divisions = [angle - 2 * width, angle - width, angle, angle + width, angle + 2 * width];
+                                var colours = ["#eef", "#ccf", "#ccf", "#eef"];
+                                var positions = [
+                                    [divisions[0], divisions[1], colours[0]],
+                                    [divisions[1], divisions[2], colours[1]],
+                                    [divisions[2], divisions[3], colours[2]],
+                                    [divisions[3], divisions[4], colours[3]]
+                                ];
+
+                                if (angle > 90 - 2 * width) {
+                                    divisions = [angle - 2 * width, angle - width, angle, angle + width, 90, angle + 2 * width];
+                                    colours = ["#eef", "#ccf", "#ccf", "#eef", "#fee"];
+                                    positions = [
+                                        [divisions[0], divisions[1], colours[0]],
+                                        [divisions[1], divisions[2], colours[1]],
+                                        [divisions[2], divisions[3], colours[2]],
+                                        [divisions[3], divisions[4], colours[3]],
+                                        [divisions[4], divisions[5], colours[4]]
+                                    ];
+                                }
+
+                                if (angle > 90 - width) {
+                                    divisions = [angle - 2 * width, angle - width, angle, 90, angle + width, angle + 2 * width];
+                                    colours = ["#eef", "#ccf", "#ccf", "#fcc", "#fee"];
+                                    positions = [
+                                        [divisions[0], divisions[1], colours[0]],
+                                        [divisions[1], divisions[2], colours[1]],
+                                        [divisions[2], divisions[3], colours[2]],
+                                        [divisions[3], divisions[4], colours[3]],
+                                        [divisions[4], divisions[5], colours[4]]
+                                    ];
+                                }
+
+                                if (angle > 90 ) {
+                                    divisions = [angle - 2 * width, angle - width, 90, angle, angle + width,  angle + 2 * width];
+                                    colours = ["#eef", "#ccf", "#fcc", "#fcc", "#fee"];
+                                    positions = [
+                                        [divisions[0], divisions[1], colours[0]],
+                                        [divisions[1], divisions[2], colours[1]],
+                                        [divisions[2], divisions[3], colours[2]],
+                                        [divisions[3], divisions[4], colours[3]],
+                                        [divisions[4], divisions[5], colours[4]]
+                                    ];
+                                }
+
+                                if (angle > 90 + width) {
+                                    divisions = [angle - 2 * width, 90, angle - width, angle, angle + width,  angle + 2 * width];
+                                    colours = ["#eef", "#fcc", "#fcc", "#fcc", "#fee"];
+                                    positions = [
+                                        [divisions[0], divisions[1], colours[0]],
+                                        [divisions[1], divisions[2], colours[1]],
+                                        [divisions[2], divisions[3], colours[2]],
+                                        [divisions[3], divisions[4], colours[3]],
+                                        [divisions[4], divisions[5], colours[4]]
+                                    ];
+                                }
+
+                                if (angle > 90 + 2 * width) {
+                                    divisions = [angle - 2 * width, angle - width, angle, angle + width,  angle + 2 * width];
+                                    colours = [ "#fee", "#fcc", "#fcc", "#fee"];
+                                    positions = [
+                                        [divisions[0], divisions[1], colours[0]],
+                                        [divisions[1], divisions[2], colours[1]],
+                                        [divisions[2], divisions[3], colours[2]],
+                                        [divisions[3], divisions[4], colours[3]]
+                                    ];
+                                }
+
+                                return positions
+                                        .map(a => {
                                             let radius = 319;
                                             let start = a[0];
                                             let end = a[1];
