@@ -1,4 +1,4 @@
-# mcaine/pointer
+# pointer
 
 Displays US election meters similar (pure coincidence i assure you) to others you may have seen.
 But I'm not a ~~rapper~~ frontend developer.
