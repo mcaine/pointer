@@ -59,7 +59,7 @@ class App extends Component {
 
   render() {
     let displayChance = this.state.chance;
-    let displayChanceName = "Trumo";
+    let displayChanceName = "Trump";
     let forecastText = "";
     if (this.state.isForecast) {
       forecastText = "FORECAST";
@@ -71,14 +71,14 @@ class App extends Component {
     }
 
     let displayMargin = Math.abs(this.state.margin);
-    let displayMarginName = "Trumo";
+    let displayMarginName = "Trump";
     if (this.state.margin <= 0) {
       displayMarginName = "Biden";
     }
 
     let displayVotes = this.state.votes > 0 ? this.state.votes : 540 + this.state.votes;
     let displayVotesText = displayVotes;
-    let displayVotesName = "Trumo";
+    let displayVotesName = "Trump";
     if (this.state.votes <= 0 ) {
       displayVotesName = "Biden";
       displayVotesText = 540 - displayVotes;
