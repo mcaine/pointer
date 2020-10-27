@@ -17,11 +17,11 @@ Confuse and infuriate any friends you may have by POSTing new values to the /upd
 
 `curl -X POST "localhost:8080/update?chance=10&margin=-11&votes=-290&isForecast=false"`
 
-`chance` param is from 0 to 100 and is the chance of trumo winning. 0 is a Biden certainty, 100 is a certain win for trumo. 
+`chance` param is from 0 to 100 and is the chance of trumo winning. 0 is a Biden certainty, 100 is a certain win for the other guy. 
 
 `margin` param is from -12 (12 pt swing to D) to +12 (12 pt swing to R)
 
-`votes` is from 270 to 540 (if you mean Trumop) or in the range -540 to -270 (if you mean Biden)
+`votes` is from 270 to 540 (if you mean Trump) or in the range -540 to -270 (if you mean Biden)
 
 `isForecast` is true or false, not required and will default to true if not present
 
