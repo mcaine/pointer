@@ -27,6 +27,10 @@ Confuse and infuriate any friends you may have by POSTing new values to the /upd
 
 Connected meters will be updated via the magic of websockets.
 
+It looks like this
+
+![Example](meters.png)
+
 
 
 
