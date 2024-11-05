@@ -67,20 +67,20 @@ class App extends Component {
 
     if (this.state.chance <= 50) {
       displayChance = 100 - displayChance;
-      displayChanceName = "Biden";
+      displayChanceName = "Harris";
     }
 
     let displayMargin = Math.abs(this.state.margin);
     let displayMarginName = "Trump";
     if (this.state.margin <= 0) {
-      displayMarginName = "Biden";
+      displayMarginName = "Harris";
     }
 
     let displayVotes = this.state.votes > 0 ? this.state.votes : 540 + this.state.votes;
     let displayVotesText = displayVotes;
     let displayVotesName = "Trump";
     if (this.state.votes <= 0 ) {
-      displayVotesName = "Biden";
+      displayVotesName = "Harris";
       displayVotesText = 540 - displayVotes;
     }
 
