@@ -1,4 +1,4 @@
-import { useState } from 'react'
+//import { useState } from 'react'
 
 import ChanceMeter from './ChanceMeter'
 import MarginMeter from './MarginMeter'
@@ -6,16 +6,21 @@ import ElectoralVotesMeter from './ElectoralVotesMeter'
 
 import './App.css'
 
-import { w3cwebsocket as W3CWebSocket } from "websocket";
-import axios from 'axios';
+//import { w3cwebsocket as W3CWebSocket } from "websocket";
+//import axios from 'axios';
 import { Table, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
-  const [chance, setChance] = useState(0)
-  const [margin, setMargin] = useState(0)
-  const [votes, setVotes] = useState(0)
-  const [isForecast, setIsForecast] = useState(true)
+//   const [chance, setChance] = useState(0)
+//   const [margin, setMargin] = useState(0)
+//   const [votes, setVotes] = useState(0)
+//   const [isForecast, setIsForecast] = useState(true)
+
+const chance = 50
+const margin = 0
+const votes = 370
+const isForecast = true
 
   let displayChance = chance;
       let displayChanceName = "Trump";

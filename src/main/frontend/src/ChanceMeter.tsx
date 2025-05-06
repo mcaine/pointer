@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import './Meter.css';
 
 function ChanceMeter ({ chance }: { chance: number }) {
