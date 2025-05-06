@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import './Meter.css';
 
-class ChanceMeter extends Component {
+function ChanceMeter ({ chance }: { chance: number }) {
 
-    constructor(props) {
-        super(props);
-        this.state = { "chance" : props.chance};
-    }
+    let l1 = 330;
+    let l2 = 10;
 
-    componentDidMount() { }
+    let angle = 1.8 * chance;
+    let v1 = angle - 90;
+    let v2 = angle + 90;
 
-    render() {
+    let x1 = -l2 * Math.cos((v1/180) * Math.PI);
+    let y1 = -l2 * Math.sin((v1/180) * Math.PI);
+
+    let x2 = -l1 * Math.cos((angle/180) * Math.PI);
+    let y2 = -l1 * Math.sin((angle/180) * Math.PI);
+
+    let x3 = -l2 * Math.cos((v2/180) * Math.PI);
+    let y3 = -l2 * Math.sin((v2/180) * Math.PI);
+
+                                let starts = [0,  10, 30,  60, 120, 150, 170]
+                                let ends   = [10, 30, 60, 120, 150, 170, 180]
+                                let colours = ["#ccf", "#ddf", "#eef", "#fff", "#fee", "#fdd", "#fcc"]
+
+
         return (
             <div>
                 <svg width={820} height={380}>
@@ -21,19 +34,12 @@ class ChanceMeter extends Component {
 
                         <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clip-path="url(#chance-cut-off)" />
                         {
-                            [
-                                [0, 10, "#ccf"],
-                                [10, 30, "#ddf"],
-                                [30, 60, "#eef"],
-                                [60, 120, "#fff"],
-                                [120, 150, "#fee"],
-                                [150, 170, "#fdd"],
-                                [170, 180, "#fcc"]
-                            ].map(a => {
+
+                            [...Array(7)].map((_, i) => {
                                 let radius = 319;
-                                let start = a[0];
-                                let end = a[1];
-                                let colour = a[2];
+                                let start = starts[i];
+                                let end = ends[i];
+                                let colour = colours[i];
 
                                 let x1 = -radius * Math.cos(start/180 * Math.PI);
                                 let y1 = -radius * Math.sin(start/180 * Math.PI);
@@ -72,28 +78,14 @@ class ChanceMeter extends Component {
                             <line x1={-320} y1={0} x2={-100} y2={0} stroke="lightgray" stroke-width={3} />
                         </g>
 
-                        {
-                            [ this.props.chance ].map(chance => {
 
-                                let l1 = 330;
-                                let l2 = 10;
 
-                                let angle = 1.8 * chance;
-                                let v1 = angle - 90;
-                                let v2 = angle + 90;
 
-                                let x1 = -l2 * Math.cos((v1/180) * Math.PI);
-                                let y1 = -l2 * Math.sin((v1/180) * Math.PI);
 
-                                let x2 = -l1 * Math.cos((angle/180) * Math.PI);
-                                let y2 = -l1 * Math.sin((angle/180) * Math.PI);
 
-                                let x3 = -l2 * Math.cos((v2/180) * Math.PI);
-                                let y3 = -l2 * Math.sin((v2/180) * Math.PI);
+                        <path d={"M " + x1 + " " + y1 + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " Z"} stroke-width={1} stroke={"gray"} fill={"gray"} />
 
-                                return <path d={"M " + x1 + " " + y1 + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " Z"} stroke-width={1} stroke={"gray"} fill={"gray"} />
-                            })
-                        }
+
 
                         <circle x={0} y={0} r={10} stroke={"white"}  stroke-width={1} fill={"gray"}/>
 
@@ -109,7 +101,7 @@ class ChanceMeter extends Component {
                 </svg>
             </div>
         );
-    }
+
 }
 
 export default ChanceMeter;

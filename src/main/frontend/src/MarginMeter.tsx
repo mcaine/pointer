@@ -1,58 +1,36 @@
 import React, { Component } from 'react';
 
-class MarginMeter extends Component {
+//class MarginMeter extends Component {
+function MarginMeter ({ margin }: { margin: number }) {
 
-    constructor(props) {
-        super(props);
-        this.state = { "margin" : this.props.margin};
+    function range(start, stop, step) {
+        var result = [start], it = start;
+        while (it < stop) {
+            result.push(it += step);
+        }
+        return result;
     }
 
-    componentDidMount() {
-    }
+    function angleForMargin(margin) {
+        let centreVal = 0;
+        return 90 + 90 * (margin - centreVal) / 12;
+   }
 
-    render() {
 
-        function range(start, stop, step) {
-            var result = [start], it = start;
-            while (it < stop) {
-                result.push(it += step);
-            }
-            return result;
-        }
-
-        function angleForMargin(margin) {
-            let centreVal = 0;
-            return 90 + 90 * (margin - centreVal) / 12;
-        }
-
-        return (
-            <div>
-                <svg width={820} height={380}>
-
-                    <g transform={"translate(410,360)"}>
-                        <clipPath id="margin-cut-off">
-                            <rect x="-500" y="-330" width="830" height="330"/>
-                        </clipPath>
-
-                        <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clipPath="url(#margin-cut-off)" />
-
-                        {
-                            [ this.props.margin ].map(margin => {
-
-                                console.log("Rendering margin meter with margin " + margin);
+    console.log("Rendering margin meter with margin " + margin);
 
                                 //let angle = 90 + 90 * margin / 12;
-                                let angle = angleForMargin(margin);
-                                let width = 10;
+    let angle = angleForMargin(margin);
+    let width = 10;
 
-                                var divisions = [angle - 2 * width, angle - width, angle, angle + width, angle + 2 * width];
-                                var colours = ["#eef", "#ccf", "#ccf", "#eef"];
-                                var positions = [
-                                    [divisions[0], divisions[1], colours[0]],
-                                    [divisions[1], divisions[2], colours[1]],
-                                    [divisions[2], divisions[3], colours[2]],
-                                    [divisions[3], divisions[4], colours[3]]
-                                ];
+    var divisions = [angle - 2 * width, angle - width, angle, angle + width, angle + 2 * width];
+    var colours = ["#eef", "#ccf", "#ccf", "#eef"];
+    var positions = [
+        [divisions[0], divisions[1], colours[0]],
+        [divisions[1], divisions[2], colours[1]],
+        [divisions[2], divisions[3], colours[2]],
+        [divisions[3], divisions[4], colours[3]]
+    ];
 
                                 if (angle > 90 - 2 * width) {
                                     divisions = [angle - 2 * width, angle - width, angle, angle + width, 90, angle + 2 * width];
@@ -113,8 +91,37 @@ class MarginMeter extends Component {
                                     ];
                                 }
 
-                                return positions
-                                        .map(a => {
+
+                                                            let l1 = 330;
+                                                            let l2 = 10;
+
+                                                            let angle = angleForMargin(margin);
+                                                            let v1 = angle - 90;
+                                                            let v2 = angle + 90;
+
+                                                            let x1 = -l2 * Math.cos((v1/180) * Math.PI);
+                                                            let y1 = -l2 * Math.sin((v1/180) * Math.PI);
+
+                                                            let x2 = -l1 * Math.cos((angle/180) * Math.PI);
+                                                            let y2 = -l1 * Math.sin((angle/180) * Math.PI);
+
+                                                            let x3 = -l2 * Math.cos((v2/180) * Math.PI);
+                                                            let y3 = -l2 * Math.sin((v2/180) * Math.PI);
+
+   return (
+            <div>
+                <svg width={820} height={380}>
+
+                    <g transform={"translate(410,360)"}>
+                        <clipPath id="margin-cut-off">
+                            <rect x="-500" y="-330" width="830" height="330"/>
+                        </clipPath>
+
+                        <circle x={0} y={0} r={320} stroke={"lightgray"} stroke-width={4} fill={"white"} clipPath="url(#margin-cut-off)" />
+
+
+
+                        {        positions.map(a => {
                                             let radius = 319;
                                             let start = a[0];
                                             let end = a[1];
@@ -126,8 +133,8 @@ class MarginMeter extends Component {
                                             let y2 = -radius * Math.sin(end/180 * Math.PI);
 
                                             return <path d={"M 0 0 " + x1 + " " + y1 + "A " + radius + " " + radius + ", 0, 0, 1 " + x2 + " " + y2 + "Z"} fill={colour} clipPath="url(#margin-cut-off)"></path>
-                                    })
-                        })}
+                                })
+                            }
 
                         <circle x={0} y={0} r={100} stroke={"lightgray"} stroke-width={3} fill={"white"} clipPath="url(#margin-cut-off)"/>
 
@@ -162,28 +169,12 @@ class MarginMeter extends Component {
                             </g>
                         })};
 
-                        {
-                            [ this.props.margin ].map(margin => {
 
-                                let l1 = 330;
-                                let l2 = 10;
 
-                                let angle = angleForMargin(margin);
-                                let v1 = angle - 90;
-                                let v2 = angle + 90;
 
-                                let x1 = -l2 * Math.cos((v1/180) * Math.PI);
-                                let y1 = -l2 * Math.sin((v1/180) * Math.PI);
 
-                                let x2 = -l1 * Math.cos((angle/180) * Math.PI);
-                                let y2 = -l1 * Math.sin((angle/180) * Math.PI);
+                                <path d={"M " + x1 + " " + y1 + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " Z"} stroke-width={1} stroke={"gray"} fill={"gray"} />
 
-                                let x3 = -l2 * Math.cos((v2/180) * Math.PI);
-                                let y3 = -l2 * Math.sin((v2/180) * Math.PI);
-
-                                return <path d={"M " + x1 + " " + y1 + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " Z"} stroke-width={1} stroke={"gray"} fill={"gray"} />
-                            })
-                        }
 
                         <circle x={0} y={0} r={10} stroke={"white"}  stroke-width={1} fill={"gray"}/>
 
@@ -191,7 +182,7 @@ class MarginMeter extends Component {
                 </svg>
             </div>
         );
-    }
+
 }
 
 export default MarginMeter;
